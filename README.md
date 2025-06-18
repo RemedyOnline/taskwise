@@ -1,12 +1,36 @@
-# React + Vite
+# TaskWise
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **TaskWise** – a clean, beautiful dashboard designed to help you plan, track, and review your daily productivity in a visual and interactive way.
 
-Currently, two official plugins are available:
+## What is TaskWise?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+TaskWise is your personal productivity companion. With an intuitive interface, it lets you:
+- **Plan** your day by creating and organizing tasks
+- **Track** your progress with visual charts and timers
+- **Review** your productivity history to spot trends and improve
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🗂️ Task management: Add, edit, and organize your daily tasks
+- ⏲️ Built-in timer: Stay focused and track time spent on each task
+- 📊 Visual analytics: See your productivity at a glance with charts
+- 🕒 History: Review past days and measure your improvement
+- 🎨 Clean, modern UI: Enjoy a distraction-free, beautiful dashboard
+
+## Tech Stack
+
+- **React** (with Vite for blazing-fast development)
+- **Tailwind CSS** for styling
+- **ESLint** for code quality
+- (And more coming soon!)
+
+## Getting Started
+
+1. Clone the repo
+2. Install dependencies: `npm install`
+3. Start the app: `npm run dev`
+4. Enjoy planning your day with TaskWise!
+
+---
+
+*Stay productive. Stay wise. Use TaskWise! 🚀*
