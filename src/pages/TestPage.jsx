@@ -4,6 +4,7 @@ import { cn } from "../lib/utils";
 import ChangeColorBtn from "../components/ChangeColorBtn";
 import GPTbutton from "../components/GPTbutton";
 import TaskCard from "../components/TaskCard";
+import UUid from "../components/UUid";
 
 const TestPage = () => {
 	const color = "green";
@@ -84,6 +85,7 @@ const TestPage = () => {
 					<GPTbutton btnName={"GTP Button"} />
 				</div>
 			</section>
+			<UUid />
 		</main>
 	);
 };

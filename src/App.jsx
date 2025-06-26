@@ -1,13 +1,14 @@
 import "./App.css";
+import Dashboard from "./pages/Dashboard";
+import TestPage from "./pages/TestPage";
+// blushPink
+// richPlum
 
 function App() {
 	return (
-		<>
-			<h1 className="text-3xl font-bold underline justify-center items-center flex">
-				Hello world!
-			</h1>
-			<p>Hello boiiiiiiiiii</p>
-		</>
+		<main className="bg-blushPink/50 text-richPlum min-h-screen">
+			<Dashboard />
+		</main>
 	);
 }
 

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+	--color-blushPink: #f3c5c3;
+	--color-richPlum: #5d3654;
+}
