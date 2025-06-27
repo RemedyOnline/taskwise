@@ -1,6 +1,25 @@
 @import "tailwindcss";
+/* @plugin "something" /* thus, after installing a plugin you intend to use... */
 
 @theme {
-	--color-blushPink: #f3c5c3;
-	--color-richPlum: #5d3654;
+	--color-blushPink-50: #fdf7f6;
+	--color-blushPink-100: #faecea;
+	--color-blushPink-200: #f6dbd8; /* default bg color */
+	--color-blushPink-300: #f3c5c3; /* main bg color */
+	--color-blushPink-400: #e8a09f;
+	--color-blushPink-401: #e8e8e8;
+	--color-blushPink-500: #da7b7a; /* main accent color */
+
+	--color-richPlum-50: #f3ecf2;
+	--color-richPlum-200: #c4a2be;
+	--color-richPlum-300: #a5739b;
+	--color-richPlum-400: #7c4e76;
+	--color-richPlum-500: #5d3654; /* main text color */
+	--color-richPlum-600: #462a40;
+
+	--color-neutral-200: #e5e7bd; /* light gray bg */
+	--color-neutral-500: #6b7280; /* medium gray text */
+	--color-success: #10b981; /* green */
+	--color-error: #ef4444; /* red */
+	--color-accent: var(--color-blushPink-500); /* main accent color */
 }

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import TaskModal from "../components/TaskModal";
 // blushPink
 // richPlum
 
 const Dashboard = () => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const openModal = () => setIsModalOpen(true); // open modal fxn...
+	const closeModal = () => setIsModalOpen(false); // close modal fxn...
+
 	return (
 		<section className="flex min-h-screen">
-			<aside className="w-48 h-screen bg-blushPink shadow p-4 flex flex-col">
+			<aside className="w-48 h-screen bg-blushPink-300 shadow-lg shadow-accent p-4 flex flex-col">
 				<h2 className="text-2xl font-bold text-center mb-4">TaskWise</h2>
 				<nav className="flex flex-col flex-grow">
 					<ul className="flex flex-col space-y-2 border-t-2 border-richPlum pt-4">
@@ -46,16 +51,27 @@ const Dashboard = () => {
 					</ul>
 				</nav>
 			</aside>
-			<div>
-				<header>
-					<h1>Today's Tasks</h1>
-					<p>Manage your productivity like a Kvng👑</p>
+			<div className="flex-1 p-6">
+				<header className="mb-6">
+					<h1 className="text-3xl font-bold">Today's Tasks</h1>
+					<p className="text-sm text-richPlum-300">
+						Manage your productivity like a Kvng👑
+					</p>
 				</header>
-				<button>+ Add Task</button>
-				<div>
+				<button
+					onClick={openModal}
+					className="bg-accent text-white rounded hover:bg-richPlum-500 px-4 py-2 hover:cursor-pointer"
+				>
+					➕ Add Task
+				</button>
+				<div className="mt-4 text-center animate-bounce">
 					<p>No tasks yet. Let's get to work!🧠</p>
 				</div>
 			</div>
+			<TaskModal isOpen={isModalOpen} onClose={closeModal}>
+				<h2>Add New Task</h2>
+				<p>This will be the form... #coming soon!🔥</p>
+			</TaskModal>
 		</section>
 	);
 };

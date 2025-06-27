@@ -6,7 +6,7 @@ import TestPage from "./pages/TestPage";
 
 function App() {
 	return (
-		<main className="bg-blushPink/50 text-richPlum min-h-screen">
+		<main className="bg-blushPink-200 text-richPlum-500 min-h-screen">
 			<Dashboard />
 		</main>
 	);
