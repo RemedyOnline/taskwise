@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TaskModal from "../components/TaskModal";
+import AddTaskForm from "../components/AddTaskForm";
 // blushPink
 // richPlum
 
@@ -69,8 +70,8 @@ const Dashboard = () => {
 				</div>
 			</div>
 			<TaskModal isOpen={isModalOpen} onClose={closeModal}>
-				<h2>Add New Task</h2>
-				<p>This will be the form... #coming soon!🔥</p>
+				<h2 className="text-xl font-bold mb-4 text-center">Add New Task</h2>
+				<AddTaskForm />
 			</TaskModal>
 		</section>
 	);
