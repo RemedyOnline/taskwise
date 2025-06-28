@@ -1,6 +1,6 @@
 import React from "react";
 
-const TaskModal = ({ isOpen, onClose, children }) => {
+const AddTaskModal = ({ isOpen, onClose, children }) => {
 	if (!isOpen) return null;
 
 	return (
@@ -18,4 +18,4 @@ const TaskModal = ({ isOpen, onClose, children }) => {
 	);
 };
 
-export default TaskModal;
+export default AddTaskModal;

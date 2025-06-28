@@ -1,8 +1,65 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
+import { cn } from "../lib/utils";
+import clockSVG from "../assets/clockLineIcon.svg";
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ onClose }) => {
+	const [taskData, setTaskData] = useState({
+		name: "",
+		category: "",
+		startTime: "",
+		endTime: "",
+		priority: "",
+		remarks: "",
+	});
+
+	const resetForm = () => {
+		setTaskData({
+			name: "",
+			category: "",
+			startTime: "",
+			endTime: "",
+			priority: "",
+			remarks: "",
+		});
+	};
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+
+		setTaskData((prev) => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log("Your Task Data..:", taskData);
+		resetForm();
+		onClose?.();
+	};
+
+	const durationInMinutes = useMemo(() => {
+		const { startTime, endTime } = taskData;
+		if (!startTime || !endTime) return "--";
+
+		const [startH, startM] = startTime.split(":").map(Number);
+		const [endH, endM] = endTime.split(":").map(Number);
+
+		let startTotal = startH * 60 + startM;
+		let endTotal = endH * 60 + endM;
+
+		let diff = endTotal - startTotal;
+		if (diff < 0) diff += 1440;
+
+		return `${diff} mins`;
+	}, [taskData.startTime, taskData.endTime]);
+
+	const inputBoxStyling =
+		"border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600";
+
 	return (
-		<form className="space-y-4">
+		<form className="space-y-4" onSubmit={handleSubmit}>
 			<div>
 				<label htmlFor="name" className="block text-sm font-medium mb-1">
 					Task Name
@@ -11,8 +68,10 @@ const AddTaskForm = () => {
 					type="text"
 					name="name"
 					id="name"
+					value={taskData.name}
+					onChange={handleChange}
+					className={inputBoxStyling}
 					placeholder="e.g Learn about Variable Scope in JS..."
-					className="border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600"
 				/>
 			</div>
 			<div>
@@ -20,10 +79,11 @@ const AddTaskForm = () => {
 					Category
 				</label>
 				<select
-					type="text"
 					name="category"
 					id="category"
-					className="border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600"
+					value={taskData.category}
+					onChange={handleChange}
+					className={cn(inputBoxStyling, "py-[7px]")}
 				>
 					<option value="">Select a category...</option>
 					<option value="frontend">Frontend Development</option>
@@ -35,7 +95,7 @@ const AddTaskForm = () => {
 					<option value="wellbeing">Health & Wellbeing</option>
 				</select>
 			</div>
-			<div className="flex gap-2">
+			<div className="flex gap-4">
 				<div>
 					<label htmlFor="startTime" className="block text-sm font-medium mb-1">
 						Start Time
@@ -44,67 +104,69 @@ const AddTaskForm = () => {
 						type="time"
 						name="startTime"
 						id="startTime"
-						placeholder="e.g Learn about Variable Scope in JS..."
-						className="border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600"
+						value={taskData.startTime}
+						onChange={handleChange}
+						className={inputBoxStyling}
 					/>
 				</div>
 				<div>
-					<label
-						htmlFor="
-               endTime"
-						className="block text-sm font-medium mb-1"
-					>
+					<label htmlFor="endTime" className="block text-sm font-medium mb-1">
 						End Time
 					</label>
 					<input
 						type="time"
-						name="
-                  endTime"
-						id="
-                  endTime"
-						placeholder="e.g Learn about Variable Scope in JS..."
-						className="border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600"
+						name="endTime"
+						id="endTime"
+						value={taskData.endTime}
+						onChange={handleChange}
+						className={inputBoxStyling}
 					/>
 				</div>
-				<div>
-					{/* I want to automatically display the duration in minutes right after the user selects a starting and ending time... when not set.. something else should be displayed here like dashes or something.. anything creative you can think of biaaaa... */}
+				<div className="flex justify-left items-center pt-6 animate-pulse gap-2">
+					<img src={clockSVG} alt="clockSVGIcon" className="w-5 opacity-100" />
+					<span className="text-xs md:text-sm text-neutral-500 italic font-medium">
+						{durationInMinutes}
+					</span>
 				</div>
 			</div>
 			<div>
-				<label htmlFor="name" className="block text-sm font-medium mb-1">
-					Task Name
+				<label htmlFor="priority" className="block text-sm font-medium mb-1">
+					Priority
 				</label>
-				<input
-					type="text"
-					name="name"
-					id="name"
-					placeholder="e.g Learn about Variable Scope in JS..."
-					className="border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600"
-				/>
+				<select
+					id="priority"
+					name="priority"
+					value={taskData.priority}
+					onChange={handleChange}
+					className={cn(inputBoxStyling, "py-[7px]")}
+				>
+					<option value="">Select priority...</option>
+					<option value="high">High</option>
+					<option value="medium">Medium</option>
+					<option value="low">Low</option>
+				</select>
 			</div>
 			<div>
-				<label htmlFor="name" className="block text-sm font-medium mb-1">
-					Task Name
+				<label htmlFor="remarks" className="block text-sm font-medium mb-1">
+					Remarks
 				</label>
-				<input
-					type="text"
-					name="name"
-					id="name"
-					placeholder="e.g Learn about Variable Scope in JS..."
-					className="border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600"
+				<textarea
+					name="remarks"
+					id="remarks"
+					value={taskData.remarks}
+					onChange={handleChange}
+					rows="3"
+					placeholder="Any important worth noting about this task??"
+					className={inputBoxStyling}
 				/>
 			</div>
-			<div>
-				<label htmlFor="name" className="block text-sm font-medium mb-1">
-					Task Name
-				</label>
-				<input
-					type="text"
-					name="name"
-					id="name"
-					placeholder="e.g Learn about Variable Scope in JS..."
-					className="border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600"
-				/>
+			<div className="flex justify-end">
+				<button
+					type="submit"
+					className="bg-accent px-2 py-1 rounded font-medium hover:bg-richPlum-500 text-white hover:cursor-pointer"
+				>
+					Submit
+				</button>
 			</div>
 		</form>
 	);

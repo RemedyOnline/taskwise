@@ -1,6 +1,5 @@
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
-import TestPage from "./pages/TestPage";
 // blushPink
 // richPlum
 

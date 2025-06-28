@@ -1,7 +1,7 @@
 import React from "react";
 import TestBtnComponent from "../components/TestBtnComponent";
 import { cn } from "../lib/utils";
-import ChangeColorBtn from "../components/ChangeColorBtn";
+import ChangeColorBtn from "./ChangeColorBtn";
 import GPTbutton from "../components/GPTbutton";
 import TaskCard from "../components/TaskCard";
 import UUid from "../components/UUid";

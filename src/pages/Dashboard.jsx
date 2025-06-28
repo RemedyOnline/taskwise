@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TaskModal from "../components/TaskModal";
+import AddTaskModal from "../components/AddTaskModal";
 import AddTaskForm from "../components/AddTaskForm";
 // blushPink
 // richPlum
@@ -61,7 +61,7 @@ const Dashboard = () => {
 				</header>
 				<button
 					onClick={openModal}
-					className="bg-accent text-white rounded hover:bg-richPlum-500 px-4 py-2 hover:cursor-pointer"
+					className="bg-accent text-white rounded hover:bg-richPlum-500 px-4 py-2 hover:cursor-pointer fixed right-6 bottom-6 shadow shadow-accent"
 				>
 					➕ Add Task
 				</button>
@@ -69,10 +69,10 @@ const Dashboard = () => {
 					<p>No tasks yet. Let's get to work!🧠</p>
 				</div>
 			</div>
-			<TaskModal isOpen={isModalOpen} onClose={closeModal}>
+			<AddTaskModal isOpen={isModalOpen} onClose={closeModal}>
 				<h2 className="text-xl font-bold mb-4 text-center">Add New Task</h2>
-				<AddTaskForm />
-			</TaskModal>
+				<AddTaskForm onClose={closeModal} />
+			</AddTaskModal>
 		</section>
 	);
 };
