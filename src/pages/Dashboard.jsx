@@ -8,6 +8,11 @@ const Dashboard = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const openModal = () => setIsModalOpen(true); // open modal fxn...
 	const closeModal = () => setIsModalOpen(false); // close modal fxn...
+	const [tasks, setTasks] = useState([]);
+
+	const handleTasks = (task) => {
+		setTasks((prevTasks) => [...prevTasks, task]);
+	};
 
 	return (
 		<section className="flex min-h-screen">
@@ -65,13 +70,27 @@ const Dashboard = () => {
 				>
 					➕ Add Task
 				</button>
-				<div className="mt-4 text-center animate-bounce">
-					<p>No tasks yet. Let's get to work!🧠</p>
-				</div>
+				{tasks.length === 0 ? (
+					<div className="mt-4 text-center animate-bounce">
+						<p>No tasks yet. Let's get to work!🧠</p>
+					</div>
+				) : (
+					tasks.map((task, index) => (
+						<div key={index}>
+							<h3>{task.name}</h3>
+							<p>
+								{task.startTime} - {task.endTime}
+							</p>
+							<p>{task.category}</p>
+							<p>{task.priority}</p>
+							{task.remarks && <p>{task.remarks}</p>}
+						</div>
+					))
+				)}
 			</div>
 			<AddTaskModal isOpen={isModalOpen} onClose={closeModal}>
 				<h2 className="text-xl font-bold mb-4 text-center">Add New Task</h2>
-				<AddTaskForm onClose={closeModal} />
+				<AddTaskForm onClose={closeModal} onAddTask={handleTasks} />
 			</AddTaskModal>
 		</section>
 	);

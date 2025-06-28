@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { cn } from "../lib/utils";
 import clockSVG from "../assets/clockLineIcon.svg";
 
-const AddTaskForm = ({ onClose }) => {
+const AddTaskForm = ({ onClose, onAddTask }) => {
 	const [taskData, setTaskData] = useState({
 		name: "",
 		category: "",
@@ -35,6 +35,7 @@ const AddTaskForm = ({ onClose }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log("Your Task Data..:", taskData);
+		onAddTask?.(taskData);
 		resetForm();
 		onClose?.();
 	};
