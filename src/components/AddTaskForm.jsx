@@ -8,6 +8,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 		category: "",
 		startTime: "",
 		endTime: "",
+		durationInMinutes: "",
 		priority: "",
 		remarks: "",
 	});
@@ -69,6 +70,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 					type="text"
 					name="name"
 					id="name"
+					required
 					value={taskData.name}
 					onChange={handleChange}
 					className={inputBoxStyling}
@@ -82,18 +84,19 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 				<select
 					name="category"
 					id="category"
+					required
 					value={taskData.category}
 					onChange={handleChange}
 					className={cn(inputBoxStyling, "py-[7px]")}
 				>
 					<option value="">Select a category...</option>
-					<option value="frontend">Frontend Development</option>
-					<option value="nocode">No-Code Solutions</option>
-					<option value="devops">Cloud & DevOps</option>
-					<option value="gradApp">Grad. Application</option>
-					<option value="gaming">Gaming & Leisure</option>
-					<option value="relaxation">Relaxation</option>
-					<option value="wellbeing">Health & Wellbeing</option>
+					<option value="Frontend Development">Frontend Development</option>
+					<option value="No-Code Solutions">No-Code Solutions</option>
+					<option value="Cloud & DevOps">Cloud & DevOps</option>
+					<option value="Grad. Application">Grad. Application</option>
+					<option value="Gaming & Leisure">Gaming & Leisure</option>
+					<option value="Relaxation">Relaxation</option>
+					<option value="Health & Wellbeing">Health & Wellbeing</option>
 				</select>
 			</div>
 			<div className="flex gap-4">
@@ -105,6 +108,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 						type="time"
 						name="startTime"
 						id="startTime"
+						required
 						value={taskData.startTime}
 						onChange={handleChange}
 						className={inputBoxStyling}
@@ -118,6 +122,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 						type="time"
 						name="endTime"
 						id="endTime"
+						required
 						value={taskData.endTime}
 						onChange={handleChange}
 						className={inputBoxStyling}
@@ -137,6 +142,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 				<select
 					id="priority"
 					name="priority"
+					required
 					value={taskData.priority}
 					onChange={handleChange}
 					className={cn(inputBoxStyling, "py-[7px]")}
