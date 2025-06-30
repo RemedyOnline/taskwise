@@ -1,6 +1,8 @@
-import React, { useMemo, useState } from "react";
-import { cn } from "../lib/utils";
+import React, { useState } from "react";
+import { cn } from "../lib/cnUtils";
 import clockSVG from "../assets/clockLineIcon.svg";
+import { getDurationInMinutes } from "../lib/timeUtils";
+import { v4 as uuid } from "uuid";
 
 const AddTaskForm = ({ onClose, onAddTask }) => {
 	const [taskData, setTaskData] = useState({
@@ -8,7 +10,6 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 		category: "",
 		startTime: "",
 		endTime: "",
-		durationInMinutes: "",
 		priority: "",
 		remarks: "",
 	});
@@ -35,27 +36,20 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("Your Task Data..:", taskData);
-		onAddTask?.(taskData);
+
+		const newTask = {
+			...taskData,
+			id: uuid(),
+			completed: false,
+		};
+
+		console.log("New Task Data..:", newTask);
+		onAddTask?.(newTask);
 		resetForm();
 		onClose?.();
 	};
 
-	const durationInMinutes = useMemo(() => {
-		const { startTime, endTime } = taskData;
-		if (!startTime || !endTime) return "--";
-
-		const [startH, startM] = startTime.split(":").map(Number);
-		const [endH, endM] = endTime.split(":").map(Number);
-
-		let startTotal = startH * 60 + startM;
-		let endTotal = endH * 60 + endM;
-
-		let diff = endTotal - startTotal;
-		if (diff < 0) diff += 1440;
-
-		return `${diff} mins`;
-	}, [taskData.startTime, taskData.endTime]);
+	const duration = getDurationInMinutes(taskData.startTime, taskData.endTime);
 
 	const inputBoxStyling =
 		"border-3 rounded-md px-3 py-1.5 w-full border-richPlum-300 focus:outline-richPlum-600";
@@ -131,7 +125,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 				<div className="flex justify-left items-center pt-6 animate-pulse gap-2">
 					<img src={clockSVG} alt="clockSVGIcon" className="w-5 opacity-100" />
 					<span className="text-xs md:text-sm text-neutral-500 italic font-medium">
-						{durationInMinutes}
+						{duration}
 					</span>
 				</div>
 			</div>

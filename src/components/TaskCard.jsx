@@ -1,48 +1,48 @@
-import React, { useMemo } from "react";
-import { cn } from "../lib/utils";
+import React from "react";
+import { cn } from "../lib/cnUtils";
+import { getDurationInMinutes } from "../lib/timeUtils";
 
-const TaskCard = ({ task }) => {
-	let {
+const TaskCard = ({ task, onToggleComplete }) => {
+	const {
+		id,
 		name,
 		startTime,
 		endTime,
-		durationInMinutes,
 		category,
 		priority,
 		remarks,
+		completed,
 	} = task;
-
-	durationInMinutes = useMemo(() => {
-		if (!startTime || !endTime) return "--";
-
-		const [startH, startM] = startTime.split(":").map(Number);
-		const [endH, endM] = endTime.split(":").map(Number);
-
-		let startTotal = startH * 60 + startM;
-		let endTotal = endH * 60 + endM;
-
-		let diff = endTotal - startTotal;
-		if (diff < 0) diff += 1440;
-
-		return `${diff} mins`;
-	}, [startTime, endTime]);
+	const duration = getDurationInMinutes(startTime, endTime);
 
 	return (
 		<div
 			className={cn(
-				"bg-blushPink-50 p-4 shadow border-1",
+				"bg-blushPink-100 p-4 shadow border-1",
 				{ "border-red-300 shadow-red-200": priority === "high" },
 				{ "border-yellow-300 shadow-yellow-200": priority === "medium" },
-				{ "border-neutral-300 shadow-neutral-200": priority === "low" }
+				{ "border-neutral-300 shadow-neutral-200": priority === "low" },
+				{ "line-through": completed === true }
 			)}
 		>
-			<h3 className="font-semibold text-lg">{name}</h3>
+			<div>
+				<h3
+					className={cn("font-semibold text-lg", {
+						underline: completed,
+					})}
+				>
+					{name}
+				</h3>
+				<input
+					type="checkbox"
+					name="completed"
+					id={`completed-${id}`}
+					onChange={() => onToggleComplete(id)}
+				/>
+			</div>
 			<p className="text-sm text-neutral-600">
 				🕒 {startTime} - {endTime}
-				<span className="italic text-neutral-400">
-					{" "}
-					- ({durationInMinutes})
-				</span>
+				<span className="italic text-neutral-400"> - ({duration})</span>
 			</p>
 			<p className="text-sm text-neutral-600">
 				🏷️ {category} •{" "}

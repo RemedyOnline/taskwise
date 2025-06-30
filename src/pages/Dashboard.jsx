@@ -17,6 +17,14 @@ const Dashboard = () => {
 		setTasks((prevTasks) => [...prevTasks, task]);
 	};
 
+	const toggleTaskCompletion = (taskId) => {
+		setTasks((prevTasks) =>
+			prevTasks.map((task) =>
+				task.id === taskId ? { ...task, completed: !task.completed } : task
+			)
+		);
+	};
+
 	return (
 		<section className="flex min-h-screen">
 			<SideBar />
@@ -28,7 +36,13 @@ const Dashboard = () => {
 							<p>No tasks yet. Let's get to work!🧠</p>
 						</div>
 					) : (
-						tasks.map((task, index) => <TaskCard key={index} task={task} />)
+						tasks.map((task) => (
+							<TaskCard
+								key={task.id}
+								task={task}
+								onToggleComplete={toggleTaskCompletion}
+							/>
+						))
 					)}
 				</div>
 				<button

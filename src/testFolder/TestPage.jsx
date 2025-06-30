@@ -1,6 +1,6 @@
 import React from "react";
 import TestBtnComponent from "../components/TestBtnComponent";
-import { cn } from "../lib/utils";
+import { cn } from "../lib/cnUtils";
 import ChangeColorBtn from "./ChangeColorBtn";
 import GPTbutton from "../components/GPTbutton";
 import TaskCard from "../components/TaskCard";
