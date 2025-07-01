@@ -28,7 +28,7 @@ const Dashboard = () => {
 	return (
 		<section className="flex min-h-screen">
 			<SideBar />
-			<div className="flex-1 p-3 ">
+			<div className="flex-1 px-6 py-3 ">
 				<Header />
 				<div className="grid gap-4">
 					{tasks.length === 0 ? (
