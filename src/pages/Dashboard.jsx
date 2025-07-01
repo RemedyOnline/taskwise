@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTaskModal from "../components/AddTaskModal";
 import AddTaskForm from "../components/AddTaskForm";
 import TaskCard from "../components/TaskCard";
@@ -11,7 +11,15 @@ const Dashboard = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const openModal = () => setIsModalOpen(true); // open modal fxn...
 	const closeModal = () => setIsModalOpen(false); // close modal fxn...
-	const [tasks, setTasks] = useState([]);
+	const [tasks, setTasks] = useState(() => {
+		const savedTasks = localStorage.getItem("taskWise_tasks");
+		return savedTasks ? JSON.parse(savedTasks) : [];
+	}); // checking if tasks exist in local storage already
+
+	useEffect(() => {
+		// saving tasks to local storage
+		localStorage.setItem("taskWise_tasks", JSON.stringify(tasks));
+	}, [tasks]);
 
 	const handleTasks = (task) => {
 		setTasks((prevTasks) => [...prevTasks, task]);
