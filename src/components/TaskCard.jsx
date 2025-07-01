@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "../lib/cnUtils";
 import { getDurationInMinutes } from "../lib/timeUtils";
 
-const TaskCard = ({ task, onToggleComplete }) => {
+const TaskCard = ({ task, onToggleComplete, onDelete }) => {
 	const {
 		id,
 		name,
@@ -21,14 +21,13 @@ const TaskCard = ({ task, onToggleComplete }) => {
 				"bg-blushPink-100 p-4 shadow border-1",
 				{ "border-red-300 shadow-red-200": priority === "high" },
 				{ "border-yellow-300 shadow-yellow-200": priority === "medium" },
-				{ "border-neutral-300 shadow-neutral-200": priority === "low" },
-				{ "line-through": completed === true }
+				{ "border-neutral-300 shadow-neutral-200": priority === "low" }
 			)}
 		>
-			<div>
+			<div className="flex justify-between">
 				<h3
 					className={cn("font-semibold text-lg", {
-						underline: completed,
+						"line-through": completed,
 					})}
 				>
 					{name}
@@ -40,11 +39,15 @@ const TaskCard = ({ task, onToggleComplete }) => {
 					onChange={() => onToggleComplete(id)}
 				/>
 			</div>
-			<p className="text-sm text-neutral-600">
+			<p
+				className={cn("text-sm text-neutral-600", { "opacity-25": completed })}
+			>
 				🕒 {startTime} - {endTime}
-				<span className="italic text-neutral-400"> - ({duration})</span>
+				<span className={cn("italic text-neutral-400")}> - ({duration})</span>
 			</p>
-			<p className="text-sm text-neutral-600">
+			<p
+				className={cn("text-sm text-neutral-600", { "opacity-25": completed })}
+			>
 				🏷️ {category} •{" "}
 				<span
 					className={cn(
@@ -63,8 +66,26 @@ const TaskCard = ({ task, onToggleComplete }) => {
 					⏳{priority}
 				</span>
 			</p>
-
-			{remarks && <p className="mt-1 italic text-richPlum-300">{remarks}</p>}
+			{remarks && (
+				<p
+					className={cn("mt-1 italic text-richPlum-300", {
+						"opacity-25": completed,
+					})}
+				>
+					{remarks}
+				</p>
+			)}
+			<div className="flex justify-end gap-2 mt-2">
+				<button className="border border-accent pl-1 pr-2 py-1 rounded hover:border-richPlum-500  hover:cursor-pointer text-xs md:text-sm">
+					🖋️ Edit
+				</button>
+				<button
+					className="bg-accent pl-1 pr-2 py-1 rounded hover:bg-richPlum-500 text-white hover:cursor-pointer text-xs md:text-sm"
+					onClick={() => onDelete(id)}
+				>
+					🗑️ Delete
+				</button>
+			</div>
 		</div>
 	);
 };

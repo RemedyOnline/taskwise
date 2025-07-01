@@ -25,10 +25,14 @@ const Dashboard = () => {
 		);
 	};
 
+	const deleteTask = (taskId) => {
+		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+	};
+
 	return (
 		<section className="flex min-h-screen">
 			<SideBar />
-			<div className="flex-1 px-6 py-3 ">
+			<div className="flex-1 px-6 py-3">
 				<Header />
 				<div className="grid gap-4">
 					{tasks.length === 0 ? (
@@ -41,6 +45,7 @@ const Dashboard = () => {
 								key={task.id}
 								task={task}
 								onToggleComplete={toggleTaskCompletion}
+								onDelete={deleteTask}
 							/>
 						))
 					)}

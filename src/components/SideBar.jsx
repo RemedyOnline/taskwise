@@ -3,7 +3,7 @@ import React from "react";
 const SideBar = () => {
 	return (
 		<section>
-			<aside className="w-48 h-screen bg-blushPink-300 shadow-lg shadow-accent p-4 flex flex-col">
+			<aside className="w-32 md:w-48 h-screen bg-blushPink-300 shadow-lg shadow-accent p-4 flex flex-col">
 				<h2 className="text-2xl font-bold text-center mb-4">TaskWise</h2>
 				<nav className="flex flex-col flex-grow">
 					<ul className="flex flex-col space-y-2 border-t-2 border-richPlum pt-4">
