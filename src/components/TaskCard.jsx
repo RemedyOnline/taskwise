@@ -33,8 +33,10 @@ const TaskCard = ({ task, onToggleComplete, onDelete }) => {
 					{name}
 				</h3>
 				<input
+					aria-label="Complete task checkbox..."
 					type="checkbox"
 					name="completed"
+					checked={completed}
 					id={`completed-${id}`}
 					onChange={() => onToggleComplete(id)}
 				/>
@@ -76,10 +78,14 @@ const TaskCard = ({ task, onToggleComplete, onDelete }) => {
 				</p>
 			)}
 			<div className="flex justify-end gap-2 mt-2">
-				<button className="border border-accent pl-1 pr-2 py-1 rounded hover:border-richPlum-500  hover:cursor-pointer text-xs md:text-sm">
+				<button
+					aria-label="Edit task button..."
+					className="border border-accent pl-1 pr-2 py-1 rounded hover:border-richPlum-500  hover:cursor-pointer text-xs md:text-sm"
+				>
 					🖋️ Edit
 				</button>
 				<button
+					aria-label="Delete task button..."
 					className="bg-accent pl-1 pr-2 py-1 rounded hover:bg-richPlum-500 text-white hover:cursor-pointer text-xs md:text-sm"
 					onClick={() => onDelete(id)}
 				>

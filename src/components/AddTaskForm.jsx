@@ -40,6 +40,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 		const newTask = {
 			...taskData,
 			id: uuid(),
+			createdAt: new Date().toISOString(),
 			completed: false,
 		};
 
@@ -163,6 +164,7 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 			</div>
 			<div className="flex justify-end">
 				<button
+					aria-label="Submit Form button..."
 					type="submit"
 					className="bg-accent px-2 py-1 rounded font-medium hover:bg-richPlum-500 text-white hover:cursor-pointer"
 				>
