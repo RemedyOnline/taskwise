@@ -16,6 +16,9 @@ const Dashboard = () => {
 		return savedTasks ? JSON.parse(savedTasks) : [];
 	}); // checking if tasks exist in local storage already
 
+	const [filterBy, setFilterBy] = useState("all"); // completion, priority...
+	const [sortBy, setSortBy] = useState("default"); // time, priority...
+
 	useEffect(() => {
 		// saving tasks to local storage
 		localStorage.setItem("taskWise_tasks", JSON.stringify(tasks));
@@ -41,7 +44,12 @@ const Dashboard = () => {
 		<section className="flex min-h-screen">
 			<SideBar />
 			<div className="flex-1 px-6 py-3">
-				<Header />
+				<Header
+					filterBy={filterBy}
+					setFilterBy={setFilterBy}
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+				/>
 				<div className="grid gap-4">
 					{tasks.length === 0 ? (
 						<div className="mt-40 text-center animate-bounce">
@@ -60,7 +68,7 @@ const Dashboard = () => {
 				</div>
 				<button
 					onClick={openModal}
-					className="bg-accent text-white rounded hover:bg-richPlum-500 px-4 py-2 hover:cursor-pointer fixed right-6 bottom-6 shadow shadow-accent"
+					className="bg-accent text-white rounded hover:bg-richPlum-500 px-4 py-2 hover:cursor-pointer fixed right-6 bottom-6 shadow shadow-accent text-sm md:text-base"
 				>
 					➕ Add Task
 				</button>
