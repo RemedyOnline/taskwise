@@ -22,4 +22,6 @@
 	--color-success: #10b981; /* green */
 	--color-error: #ef4444; /* red */
 	--color-accent: var(--color-blushPink-500); /* main accent color */
+
+	--text-xxs: 11px;
 }

@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { FaChevronLeft, FaTasks } from "react-icons/fa";
-import { IoHomeOutline, IoSettingsOutline } from "react-icons/io5";
-import { PiClockCountdownFill } from "react-icons/pi";
+import { FaChevronLeft } from "react-icons/fa";
+import { PiChartLineUpBold, PiClockCountdownFill } from "react-icons/pi";
 import { cn } from "../lib/cnUtils";
-import { LuListChecks, LuSettings } from "react-icons/lu";
-import { IoIosStats } from "react-icons/io";
-import { TfiStatsUp } from "react-icons/tfi";
-import { MdBarChart, MdOutlineSettings } from "react-icons/md";
-import { GrPieChart } from "react-icons/gr";
-import { HiOutlineChartPie } from "react-icons/hi";
-import { BiBarChart } from "react-icons/bi";
-import { CiSettings } from "react-icons/ci";
-import { RiSettings3Line, RiSettings4Line } from "react-icons/ri";
-import { SlSettings } from "react-icons/sl";
-import { TbLogout, TbLogout2 } from "react-icons/tb";
+import { LuChartLine, LuListChecks, LuUserRound } from "react-icons/lu";
+import { RiSettings3Line } from "react-icons/ri";
+import { TbLogout2 } from "react-icons/tb";
+import { CgProfile } from "react-icons/cg";
+import { TiChartPieOutline } from "react-icons/ti";
 
 const navItems = [
 	{
@@ -27,15 +20,19 @@ const navItems = [
 	},
 	{
 		name: "Analytics",
-		icon: <BiBarChart className="w-6 h-6 flex-shrink-0" />,
+		icon: <PiChartLineUpBold className="w-6 h-6 flex-shrink-0" />,
+	},
+	{
+		name: "Reports",
+		icon: <TiChartPieOutline className="w-6 h-6 flex-shrink-0" />,
 	},
 	{
 		name: "Settings",
 		icon: <RiSettings3Line className="w-6 h-6 flex-shrink-0" />,
 	},
 	{
-		name: "Dashboard",
-		icon: <AiOutlineDashboard className="w-6 h-6 flex-shrink-0" />,
+		name: "Profile",
+		icon: <LuUserRound className="w-6 h-6 flex-shrink-0" />,
 	},
 ];
 
@@ -54,11 +51,16 @@ const SideBar = () => {
 		<section>
 			<aside
 				className={cn(
-					"h-screen bg-blushPink-300 shadow-lg shadow-accent p-4 flex flex-col flex-shrink-0 w-full ",
-					{ "w-14": collapsed }
+					"h-screen bg-blushPink-300 shadow-lg shadow-accent flex flex-col flex-shrink-0 w-full ",
+					{ "w-18": collapsed }
 				)}
 			>
-				<div className="flex gap-2 justify-between items-center mb-2">
+				{/* Logo and Collapse Btn... */}
+				<div
+					className={cn("flex gap-2 justify-between items-center p-4", {
+						"p-5.5 pb-4": collapsed,
+					})}
+				>
 					<div className="flex gap-1 items-center hover:cursor-pointer">
 						<PiClockCountdownFill
 							className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 pt-0.5 lg:pt-1 flex-shrink-0"
@@ -91,41 +93,51 @@ const SideBar = () => {
 						</span>
 					</div>
 				</div>
+				{/* NavLinks... */}
 				<nav className="flex flex-col flex-grow">
-					<ul className="flex flex-col space-y-2 border-t-2 border-richPlum pt-4">
+					<ul className="flex flex-col space-y-2 border-t-2 border-richPlum p-2">
 						{navItems.map((item, index) => (
 							<li
 								key={index}
-								className="flex gap-1 md:gap-2 items-center group hover:cursor-pointer p-2 rounded-md  hover:bg-blue-300"
+								className={cn(
+									"flex gap-1 md:gap-2 items-center group hover:cursor-pointer p-2 rounded-md  hover:bg-blushPink-400",
+									{ "flex-col gap-0 md:gap-0": collapsed }
+								)}
 							>
-								<span>{item.icon}</span>
+								<span className="">{item.icon}</span>
 								{!collapsed && (
 									<span className="font-medium text-sm md:text-base hover:text-richPlum/70 ">
 										{item.name}
 									</span>
 								)}
 								{collapsed && (
-									<span className="group-hover:block absolute whitespace-nowrap text-xs font-medium px-2 py-1 bg-accent text-white rounded-md ml-10 hidden opacity-80 transition">
-										{item.name}
-									</span>
+									<>
+										<span className="whitespace-nowrap text-xxs font-medium  rounded-md transition">
+											{item.name}
+										</span>
+									</>
 								)}
 							</li>
 						))}
-						<li className="flex gap-1 md:gap-2 items-center">
-							<AiOutlineDashboard className="w-6 h-6  flex-shrink-0" />
-							<TbLogout className="w-6 h-6  flex-shrink-0" />
-							<TbLogout2 className="w-6 h-6  flex-shrink-0" />
-							<RiSettings3Line className="w-6 h-6  flex-shrink-0" />
+						{/* <li className="flex gap-1 md:gap-2 items-center">
+							<LuChartLine className="w-6 h-6  flex-shrink-0" />
 							<a
 								href="#"
 								className="font-medium text-sm md:text-base hover:text-richPlum/70 hover:underline"
 							>
 								Dashboard
 							</a>
-						</li>
+						</li> */}
 					</ul>
-					<ul className="mt-auto border-t-2 border-richPlum pt-2">
-						<li className="flex gap-1 md:gap-2 items-center group hover:cursor-pointer p-2 rounded-md  hover:bg-blue-300">
+					<ul className="mt-auto border-t-2 p-2 border-richPlum">
+						<li
+							className={cn(
+								"flex gap-2 items-center hover:cursor-pointer p-2 rounded-md  hover:bg-blushPink-400",
+								{
+									"p-2 flex-col gap-0 ": collapsed,
+								}
+							)}
+						>
 							<TbLogout2 className="w-6 h-6 flex-shrink-0" />
 							{!collapsed && (
 								<span className="font-medium text-sm md:text-base hover:text-richPlum/70 ">
@@ -133,9 +145,11 @@ const SideBar = () => {
 								</span>
 							)}
 							{collapsed && (
-								<span className="group-hover:block absolute whitespace-nowrap text-xs font-medium px-2 py-1 bg-accent text-white rounded-md ml-10 hidden opacity-80 transition">
-									Logout
-								</span>
+								<>
+									<span className="whitespace-nowrap text-xxs font-medium rounded-md transition">
+										Logout
+									</span>
+								</>
 							)}
 						</li>
 					</ul>
