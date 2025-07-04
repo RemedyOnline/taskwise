@@ -4,14 +4,14 @@ import clockSVG from "../assets/clockLineIcon.svg";
 import { getDurationInMinutes } from "../lib/timeUtils";
 import { v4 as uuid } from "uuid";
 
-const AddTaskForm = ({ onClose, onAddTask }) => {
+const AddTaskForm = ({ onClose, onAddTask, taskToEdit, onUpdateTask }) => {
 	const [taskData, setTaskData] = useState({
-		name: "",
-		category: "",
-		startTime: "",
-		endTime: "",
-		priority: "",
-		remarks: "",
+		name: taskToEdit?.name || "",
+		category: taskToEdit?.category || "",
+		startTime: taskToEdit?.startTime || "",
+		endTime: taskToEdit?.endTime || "",
+		priority: taskToEdit?.priority || "",
+		remarks: taskToEdit?.remarks || "",
 	});
 
 	const resetForm = () => {
@@ -37,15 +37,26 @@ const AddTaskForm = ({ onClose, onAddTask }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const newTask = {
-			...taskData,
-			id: uuid(),
-			createdAt: new Date().toISOString(),
-			completed: false,
-		};
+		if (taskToEdit) {
+			// update existing task...
+			const updatedTask = {
+				...taskToEdit,
+				...taskData, // updated fields
+			};
+			onUpdateTask?.(updatedTask);
+		} else {
+			const newTask = {
+				...taskData,
+				id: uuid(),
+				createdAt: new Date().toISOString(),
+				completed: false,
+			};
+			onAddTask?.(newTask);
+		}
 
-		console.log("New Task Data..:", newTask);
-		onAddTask?.(newTask);
+		// console.log("New Task Data..:", newTask);
+		// console.log("Updated Task Data..:", updatedTask);
+
 		resetForm();
 		onClose?.();
 	};

@@ -18,6 +18,8 @@ const Dashboard = () => {
 		return savedTasks ? JSON.parse(savedTasks) : [];
 	}); // checking if tasks exist in local storage already
 
+	const [editedTask, setEditedTask] = useState(null);
+
 	const [filterStatus, setFilterStatus] = useState("all"); // completion, priority...
 	const [filterPriority, setFilterPriority] = useState("all"); // completion, priority...
 	const [sortBy, setSortBy] = useState("entryOrder"); // time, priority...
@@ -29,6 +31,19 @@ const Dashboard = () => {
 
 	const handleTasks = (task) => {
 		setTasks((prevTasks) => [...prevTasks, task]);
+	};
+
+	const startEditingTask = (task) => {
+		setEditedTask(task);
+		setIsModalOpen(true);
+	};
+
+	const updateTask = (updatedTask) => {
+		setTasks((prevTasks) =>
+			prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+		);
+		setEditedTask(null);
+		setIsModalOpen(false);
 	};
 
 	const toggleTaskCompletion = (taskId) => {
@@ -92,9 +107,9 @@ const Dashboard = () => {
 	};
 
 	return (
-		<section className="flex min-h-screen">
+		<section className="flex h-screen overflow-hidden">
 			<SideBar />
-			<div className="flex-1 px-6 py-3">
+			<div className="flex-1 px-6 py-3 overflow-y-auto">
 				<Header
 					filterStatus={filterStatus}
 					setFilterStatus={setFilterStatus}
@@ -115,6 +130,7 @@ const Dashboard = () => {
 								task={task}
 								onToggleComplete={toggleTaskCompletion}
 								onDelete={deleteTask}
+								onEdit={startEditingTask}
 							/>
 						))
 					)}
@@ -130,7 +146,12 @@ const Dashboard = () => {
 			</div>
 			<AddTaskModal isOpen={isModalOpen} onClose={closeModal}>
 				<h2 className="text-xl font-bold mb-4 text-center">Add New Task</h2>
-				<AddTaskForm onClose={closeModal} onAddTask={handleTasks} />
+				<AddTaskForm
+					onClose={closeModal}
+					onAddTask={handleTasks}
+					onUpdateTask={updateTask}
+					taskToEdit={editedTask}
+				/>
 			</AddTaskModal>
 		</section>
 	);

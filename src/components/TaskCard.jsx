@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "../lib/cnUtils";
 import { getDurationInMinutes } from "../lib/timeUtils";
 
-const TaskCard = ({ task, onToggleComplete, onDelete }) => {
+const TaskCard = ({ task, onToggleComplete, onDelete, onEdit }) => {
 	const {
 		id,
 		name,
@@ -79,15 +79,16 @@ const TaskCard = ({ task, onToggleComplete, onDelete }) => {
 			)}
 			<div className="flex justify-end gap-2 mt-2">
 				<button
+					onClick={() => onEdit(task)}
 					aria-label="Edit task button..."
-					className="border border-accent pl-1 pr-2 py-1 rounded hover:border-richPlum-500  hover:cursor-pointer text-xs md:text-sm"
+					className="border border-accent text-accent pl-1 pr-2 py-1 rounded hover:border-richPlum-500 hover:text-richPlum-500  hover:cursor-pointer text-xs md:text-sm"
 				>
-					🖋️ Edit
+					✏️ Edit
 				</button>
 				<button
+					onClick={() => onDelete(id)}
 					aria-label="Delete task button..."
 					className="bg-accent pl-1 pr-2 py-1 rounded hover:bg-richPlum-500 text-white hover:cursor-pointer text-xs md:text-sm"
-					onClick={() => onDelete(id)}
 				>
 					🗑️ Delete
 				</button>
