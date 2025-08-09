@@ -1,13 +1,13 @@
 import React from "react";
-import TestBtnComponent from "../components/TestBtnComponent";
+import TestBtnComponent from "../testFolder/TestBtnComponent";
 import { cn } from "../lib/cnUtils";
 import ChangeColorBtn from "./ChangeColorBtn";
-import GPTbutton from "../components/GPTbutton";
-import TaskCard from "../components/TaskCard";
-import UUid from "../components/UUid";
+import GPTbutton from "../testFolder/GPTbutton";
+// import TaskCard from "../components/TaskCard";
+import UUid from "../testFolder/UUid";
 
 const TestPage = () => {
-	const color = "green";
+	const color = "blue";
 	const colors = {
 		red: "text-red-500",
 		blue: "text-blue-500",
@@ -60,7 +60,7 @@ const TestPage = () => {
 					className="border-red-500 bg-red-100 text-red-500 font-black font-serif rounded-lg px-5"
 					btnName="Hello"
 					isPrimary={true}
-					variant={"primary"}
+					variant={""}
 					classNamee={"bg-pink-200 p-3 rounded-xl border-4 border-pink-500 bor"}
 				/>
 			</section>
@@ -75,12 +75,12 @@ const TestPage = () => {
 						commodi officiis quia itaque
 					</p>
 					<div className="flex gap-2">
-						<TaskCard taskName={"Go to Gym"} priority={"high"} />
+						{/* <TaskCard taskName={"Go to Gym"} priority={"high"} />
 						<TaskCard
 							taskName={"Continue TaskWise"}
 							priority={"medium"}
 							completed
-						/>
+						/> */}
 					</div>
 					<GPTbutton btnName={"GTP Button"} />
 				</div>

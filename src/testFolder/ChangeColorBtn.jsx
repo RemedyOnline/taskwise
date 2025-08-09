@@ -11,13 +11,13 @@ const ChangeColorBtn = ({
 	function getVariantStyle(variant) {
 		switch (variant) {
 			case "primary":
-				return "text-lg text-blue-500  hover:underline";
+				return "text-lg text-blue-500 hover:underline";
 			case "secondary":
 				return "text-lg text-red-400 font-median hover:italic";
 			case "tertiary":
 				return "text-lg text-green-600 font-mono font-black hover:uppercase";
 			default:
-				return "text-lg";
+				return "text-base uppercase";
 		}
 	}
 	return (

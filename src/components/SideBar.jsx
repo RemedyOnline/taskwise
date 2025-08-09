@@ -124,7 +124,7 @@ const SideBar = () => {
 								)}
 								{collapsed && (
 									<>
-										<span className="whitespace-nowrap text-xxs font-medium  rounded-md transition">
+										<span className="whitespace-nowrap text-xxs font-medium rounded-md transition">
 											{item.name}
 										</span>
 									</>
