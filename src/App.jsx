@@ -8,9 +8,9 @@ import TestPage2 from "./testFolder/TestPage2";
 function App() {
 	return (
 		<main className="bg-blushPink-200 text-richPlum-500 min-h-screen">
-			{/* <Dashboard /> */}
+			<Dashboard />
 			{/* <TestPage /> */}
-			<TestPage2 />
+			{/* <TestPage2 /> */}
 		</main>
 	);
 }
