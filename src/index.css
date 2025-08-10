@@ -1,6 +1,10 @@
 @import "tailwindcss";
 /* @plugin "something" /* thus, after installing a plugin you intend to use... */
 
+* {
+	box-sizing: border-box;
+}
+
 @theme {
 	--color-blushPink-50: #fdf7f6;
 	--color-blushPink-100: #faecea;

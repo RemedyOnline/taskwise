@@ -5,6 +5,7 @@ import TaskCard from "../components/TaskCard";
 import SideBar from "../components/SideBar";
 import Header from "../components/Header";
 import plusIcon from "../assets/plusIcon.svg";
+import SidebarRecap from "../testFolder/SidebarRecap";
 
 // blushPink
 // richPlum
@@ -109,6 +110,7 @@ const Dashboard = () => {
 	return (
 		<section className="flex h-screen overflow-hidden">
 			<SideBar />
+			<SidebarRecap />
 			<div className="flex-1 px-6 py-3 overflow-y-auto">
 				<Header
 					filterStatus={filterStatus}

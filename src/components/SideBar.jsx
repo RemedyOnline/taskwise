@@ -66,7 +66,7 @@ const SideBar = () => {
 						})}
 					>
 						<PiClockCountdownFill
-							className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 pt-0.5 lg:pt-1 flex-shrink-0 hover:cursor-pointer"
+							className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 pt-0.5 lg:pt-1 flex-shrink-0 hover:cursor-pointer hover:text-blushPink-500"
 							onClick={toggleSidebar}
 						/>
 						<span>
