@@ -1,17 +1,34 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import TestPage from "./testFolder/TestPage";
 import TestPage2 from "./testFolder/TestPage2";
+import SidebarRecap from "./testFolder/SidebarRecap";
+import MainLayout from "./layouts/MainLayout";
+import NotFound from "./pages/NotFound";
+import Settings from "./pages/NotFound";
+import Profile from "./pages/NotFound";
+import Analytics from "./pages/NotFound";
+import Reports from "./pages/NotFound";
 // blushPink
 // richPlum
 
 function App() {
 	return (
-		<main className="bg-blushPink-200 text-richPlum-500 min-h-screen">
-			<Dashboard />
-			{/* <TestPage /> */}
-			{/* <TestPage2 /> */}
-		</main>
+		<Routes>
+			<Route path="/" element={<MainLayout />}>
+				<Route index element={<Dashboard />} />
+				<Route path="/tasks" element={<TestPage />} />
+				<Route path="/tasks/:taskId" element={<TestPage2 />} />
+				<Route path="/analytics" element={<Analytics />} />
+				<Route path="/reports" element={<Reports />} />
+				<Route path="/settings" element={<Settings />} />
+				<Route path="/profile" element={<Profile />} />
+			</Route>
+			<Route path="*" element={<NotFound />} />
+			{/* <Route path="/login" element={<Login />} /> */}
+			{/* <Route path="/signup" element={<SignUp />} /> */}
+		</Routes>
 	);
 }
 

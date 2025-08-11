@@ -3,6 +3,7 @@ import { cn } from "../lib/cnUtils";
 import clockSVG from "../assets/clockLineIcon.svg";
 import { getDurationInMinutes } from "../lib/timeUtils";
 import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const AddTaskForm = ({ onClose, onAddTask, taskToEdit, onUpdateTask }) => {
 	const [taskData, setTaskData] = useState({
@@ -34,7 +35,9 @@ const AddTaskForm = ({ onClose, onAddTask, taskToEdit, onUpdateTask }) => {
 		}));
 	};
 
-	const handleSubmit = (e) => {
+	const navigate = useNavigate();
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		if (taskToEdit) {
@@ -51,14 +54,14 @@ const AddTaskForm = ({ onClose, onAddTask, taskToEdit, onUpdateTask }) => {
 				createdAt: new Date().toISOString(),
 				completed: false,
 			};
-			onAddTask?.(newTask);
+			await onAddTask?.(newTask);
 		}
 
 		// console.log("New Task Data..:", newTask);
 		// console.log("Updated Task Data..:", updatedTask);
-
 		resetForm();
 		onClose?.();
+		navigate("/tasks");
 	};
 
 	const duration = getDurationInMinutes(taskData.startTime, taskData.endTime);
