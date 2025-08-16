@@ -7,7 +7,7 @@ import { LuListChecks, LuLogOut, LuUserRound } from "react-icons/lu";
 import { RiSettings3Line } from "react-icons/ri";
 import { TiChartPieOutline } from "react-icons/ti";
 import Tooltip from "../components/Tooltip";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SidebarRecap = () => {
 	const navItems = [
@@ -22,6 +22,11 @@ const SidebarRecap = () => {
 			name: "Tasks",
 			icon: <LuListChecks className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" />,
 			to: "/tasks",
+		},
+		{
+			name: "Todos",
+			icon: <LuListChecks className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" />,
+			to: "/todos",
 		},
 		{
 			name: "Analytics",
@@ -136,12 +141,15 @@ const SidebarRecap = () => {
 						</button>
 					</Tooltip>
 				) : (
-					<button className="flex items-center gap-0.5 md:gap-1 lg:gap-2 p-0  w-full rounded-md bg-blushPink-400/30 hover:bg-blushPink-400 hover:cursor-pointer">
+					<Link
+						to={"/login"}
+						className="flex items-center gap-0.5 md:gap-1 lg:gap-2 p-0  w-full rounded-md bg-blushPink-400/30 hover:bg-blushPink-400 hover:cursor-pointer"
+					>
 						<span className="flex items-center justify-center size-10 md:size-12">
 							<LuLogOut className="w-5 md:w-6 h-5 md:h-6" />
 						</span>
 						<span className="text-sm md:text-base font-medium">Logout</span>
-					</button>
+					</Link>
 				)}
 			</div>
 		</aside>
