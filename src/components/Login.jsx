@@ -1,64 +1,88 @@
 // import axios from "axios";
 import { useState } from "react";
-import { AddTodo } from "../api/todoService";
+import { loginUser } from "../api/authService";
+import { useNavigate } from "react-router-dom";
+import { cn } from "../lib/cnUtils";
 
 const Login = () => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [form, setForm] = useState({ email: "", password: "" });
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
 
-	const handleSubmit = async (e) => {
+	const navigate = useNavigate();
+
+	const onChange = (e) => {
+		const { name, value } = e.target;
+		setForm((f) => ({ ...f, [name]: value }));
+	};
+
+	const onSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			// const response = await axios.post(
-			// 	"https://jsonplaceholder.typicode.com/todos",
-			// 	{ email, password }
-			// );
-			AddTodo({ email, password });
-			// console.log("Login Successful", response.data);
-			console.log("EMAIL:", email);
-			console.log("PASSWORD:", password);
+		setError("");
+		setLoading(true);
 
-			// after successful login...
-			// localStorage.setItem("token", response.data.token);
-		} catch (error) {
-			console.error("Error logging in:", error);
+		try {
+			await loginUser(form); // stores token in local stroage...
+			console.log("Login Successful bro!", form);
+			navigate("/dashboard");
+			// window.location.href = "/dashboard"
+		} catch (err) {
+			const msg =
+				err.response?.data?.message ||
+				err.response?.data?.error ||
+				err.message ||
+				"Login failed";
+			setError(msg);
+			console.error("Error logging in:", err);
+		} finally {
+			setLoading(false);
 		}
 	};
 
 	return (
-		<section className="p-5">
-			<br />
+		<section className="p-5 flex justify-center items-center">
 			<form
-				onSubmit={handleSubmit}
-				method="post"
-				className="flex flex-col gap-2 max-w-1/2 p-8 bg-blushPink-300/50 rounded-xl items-center"
+				onSubmit={onSubmit}
+				className="flex flex-col gap-2 max-w-sm p-6 bg-blushPink-300/50 rounded-xl items-center"
 			>
-				<h2>LOGIN </h2>
-				<input
-					type="email"
-					name="email"
-					id="email"
-					value={email}
-					placeholder="Enter your email..."
-					onChange={(e) => setEmail(e.target.value)}
-					className="bg-white rounded-md py-2 px-4 border border-accent w-full"
-				/>
-				<input
-					type="password"
-					name="password"
-					id="password"
-					value={password}
-					placeholder="Enter a strong password..."
-					onChange={(e) => setPassword(e.target.value)}
-					className="bg-white rounded-md py-2 px-4 border border-accent w-full"
-				/>
-				<br />
+				<h1 className="text-xl font-medium mb-1">Welcome back </h1>
+				<label htmlFor="email" className="block mb-1 w-full">
+					<span className="text-sm font-medium">Email</span>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						required
+						value={form.email}
+						placeholder="Enter your email..."
+						onChange={onChange}
+						className="bg-white rounded-md p-2 border border-accent w-full"
+					/>
+				</label>
+				<label htmlFor="password" className="block mb-1 w-full">
+					<span className="text-sm font-medium">Password</span>
+					<input
+						type="password"
+						name="password"
+						id="password"
+						required
+						value={form.password}
+						onChange={onChange}
+						placeholder="Enter a strong password..."
+						className="bg-white rounded-md p-2 border border-accent w-full"
+					/>
+				</label>
+				{error && <p className="text-red-600 text-sm font-medium">{error}</p>}
 
 				<button
 					type="submit"
-					className="bg-accent text-white rounded-md px-4 py-2 border border-accent w-full"
+					disabled={loading}
+					className={cn(
+						"bg-accent text-white rounded-md px-4 py-2 border border-accent w-full cursor-pointer",
+						loading && "bg-gray-500 border-gray-500 cursor-progress"
+					)}
 				>
-					Login
+					{loading ? "Logging in..." : "Login"}
 				</button>
 			</form>
 		</section>

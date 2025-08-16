@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { cn } from "../lib/cnUtils";
 import { BiChevronLeft } from "react-icons/bi";
+import { TbChevronsLeft } from "react-icons/tb";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { PiChartLineUpBold, PiClockCountdownFill } from "react-icons/pi";
 import { LuListChecks, LuLogOut, LuUserRound } from "react-icons/lu";
@@ -45,7 +46,7 @@ const SidebarRecap = () => {
 		{
 			name: "Settings",
 			icon: <RiSettings3Line className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" />,
-			to: "/settings",
+			to: "/signup",
 		},
 		{
 			name: "Profile",
@@ -83,10 +84,18 @@ const SidebarRecap = () => {
 							<h2 className="text-base md:text-lg lg:text-xl origin-left font-bold flex-1">
 								TaskWise
 							</h2>
-							<BiChevronLeft
+							{/* <BiChevronLeft
+								onClick={toggleSidebar}
+								className="p-2 bg-blushPink-400/30 hover:bg-blushPink-400 hover:cursor-pointer rounded-lg size-10 md:size-12"
+							/> */}
+							<TbChevronsLeft
 								onClick={toggleSidebar}
 								className="p-2 bg-blushPink-400/30 hover:bg-blushPink-400 hover:cursor-pointer rounded-lg size-10 md:size-12"
 							/>
+							{/* <FaChevronLeft
+								onClick={toggleSidebar}
+								className="p-3 bg-blushPink-400/30 hover:bg-blushPink-400 hover:cursor-pointer rounded-lg size-10 md:size-12"
+							/> */}
 						</>
 					)}
 				</div>

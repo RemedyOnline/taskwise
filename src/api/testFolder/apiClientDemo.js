@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const apiClient = axios.create({
+const apiClientDemo = axios.create({
 	baseURL: "https://jsonplaceholder.typicode.com",
 	headers: { "Content-Type": "application/json" },
 });
 
-export default apiClient;
+export default apiClientDemo;

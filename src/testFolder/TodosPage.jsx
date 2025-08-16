@@ -1,6 +1,6 @@
 // import axios from "axios";
 import { useEffect, useState } from "react";
-import { getTodos } from "../api/todoService";
+import { getTodos } from "../api/testFolder/todoService";
 
 const TodosPage = () => {
 	// fetch("https://jsonplaceholder.typicode.com/todos/1")

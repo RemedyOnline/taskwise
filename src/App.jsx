@@ -13,6 +13,7 @@ import Reports from "./pages/NotFound";
 import TodosPage from "./testFolder/TodosPage";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import ProtectedRoute from "./routes/ProtectedRoute";
 // blushPink
 // richPlum
 
@@ -20,7 +21,16 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<MainLayout />}>
-				<Route index element={<Dashboard />} />
+				<Route
+					index
+					element={
+						<ProtectedRoute>
+							<Dashboard />
+						</ProtectedRoute>
+					}
+				/>
+				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<SignUp />} />
 				<Route path="/tasks" element={<TestPage />} />
 				<Route path="/todos" element={<TodosPage />} />
 				<Route path="/tasks/:taskId" element={<TestPage2 />} />
@@ -28,10 +38,9 @@ function App() {
 				<Route path="/reports" element={<Reports />} />
 				<Route path="/settings" element={<Settings />} />
 				<Route path="/profile" element={<Profile />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/signup" element={<SignUp />} />
+				<Route path="*" element={<Login />} />
 			</Route>
-			<Route path="*" element={<NotFound />} />
+			{/* <Route path="*" element={<NotFound />} /> */}
 			{/* <Route path="/login" element={<Login />} /> */}
 			{/* <Route path="/signup" element={<SignUp />} /> */}
 		</Routes>
