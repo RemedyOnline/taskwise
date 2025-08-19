@@ -68,7 +68,7 @@ const SignUp = () => {
 						<span className="text-sm font-medium">First Name</span>
 						<input
 							id="firstName"
-							type="firstName"
+							type="text"
 							name="firstName"
 							value={form.firstName}
 							onChange={onChange}
@@ -80,7 +80,7 @@ const SignUp = () => {
 						<span className="text-sm font-medium">Last Name</span>
 						<input
 							id="lastName"
-							type="lastName"
+							type="text"
 							name="lastName"
 							value={form.lastName}
 							onChange={onChange}
@@ -118,7 +118,7 @@ const SignUp = () => {
 						<span className="text-sm font-medium">Confirm Password</span>
 						<input
 							id="confirmPassword"
-							type="confirmPassword"
+							type="password"
 							name="confirmPassword"
 							value={form.confirmPassword}
 							onChange={onChange}
