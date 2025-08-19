@@ -5,6 +5,7 @@ export async function registerUser(payload) {
 	// payload = {firstName, lastName, email, password, confirmPassword}
 	const res = await apiClientMain.post("/users/register", payload);
 	console.log(payload);
+	console.log("Sign up successful..");
 
 	return res.status === 200; // per documentation...
 }

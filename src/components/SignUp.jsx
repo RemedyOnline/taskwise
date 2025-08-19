@@ -145,7 +145,7 @@ const SignUp = () => {
 						loading && "bg-gray-500 border-gray-500 cursor-progress"
 					)}
 				>
-					{loading ? "Creating" : "Create Account"}
+					{loading ? "Creating..." : "Create Account"}
 				</button>
 			</form>
 		</section>
