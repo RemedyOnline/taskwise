@@ -1,24 +1,26 @@
 import apiClientMain from "./apiClientMain";
 
 // SIGN UP...
-export async function registerUser(payload) {
-	// payload = {firstName, lastName, email, password, confirmPassword}
-	const res = await apiClientMain.post("/users/register", payload);
-	console.log(payload);
-	console.log("Sign up successful..");
-
-	return res.status === 200; // per documentation...
-}
-
 // export async function registerUser(payload) {
-// 	try {
-// 		const res = await apiClientMain.post("/users/register", payload);
-// 		return res.status === 200;
-// 	} catch (err) {
-// 		console.error("Register error details:", err.response?.data || err.message);
-// 		throw err; // let the form display it
-// 	}
+// 	// payload = {firstName, lastName, email, password, confirmPassword}
+// 	const res = await apiClientMain.post("/users/register", payload);
+// 	console.log(payload);
+// 	console.log("Sign up successful..");
+
+// 	return res.status === 200; // per documentation...
 // }
+
+export async function registerUser(payload) {
+	try {
+		const res = await apiClientMain.post("/users/register", payload);
+		console.log(payload);
+		console.log("Sign up successful..");
+		return res.status === 200;
+	} catch (err) {
+		console.error("Register error details:", err.response?.data || err.message);
+		throw err; // let the form display it
+	}
+}
 
 // LOG IN...
 export async function loginUser(credentials) {
