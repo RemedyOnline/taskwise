@@ -4,6 +4,8 @@ import apiClientMain from "./apiClientMain";
 export async function registerUser(payload) {
 	// payload = {firstName, lastName, email, password, confirmPassword}
 	const res = await apiClientMain.post("/users/register", payload);
+	console.log(payload);
+
 	return res.status === 200; // per documentation...
 }
 

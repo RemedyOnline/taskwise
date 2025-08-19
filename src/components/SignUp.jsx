@@ -60,10 +60,10 @@ const SignUp = () => {
 			<br />
 			<form
 				onSubmit={handleSubmit}
-				className="flex flex-col gap-2 max-w-sm p-6 bg-blushPink-300/50 rounded-xl items-center"
+				className="flex flex-col gap-1 md:gap-2 max-w-sm p-6 bg-blushPink-300/50 rounded-xl items-center"
 			>
 				<h1 className="text-xl font-medium mb-1">Create your account</h1>
-				<div className="grid grid-cols-2 gap-4">
+				<div className="grid md:grid-cols-2 gap-1 md:gap-2 w-full">
 					<label htmlFor="firstName" className="block mb-1 w-full">
 						<span className="text-sm font-medium">First Name</span>
 						<input
@@ -101,7 +101,7 @@ const SignUp = () => {
 						className="bg-white rounded-md p-2 border border-accent w-full"
 					/>
 				</label>
-				<div className="grid grid-cols-2 gap-4">
+				<div className="grid md:grid-cols-2 gap-1 md:gap-2 w-full">
 					<label htmlFor="password" className="block mb-1 w-full">
 						<span className="text-sm font-medium">Password</span>
 						<input
@@ -136,7 +136,7 @@ const SignUp = () => {
 						you will be redirected to the login page soon...
 					</p>
 				)}
-
+				<br />
 				<button
 					type="submit"
 					disabled={loading}
